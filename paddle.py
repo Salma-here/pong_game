@@ -26,9 +26,9 @@ class Paddle:
         pygame.draw.rect(self.screen, self.color, self.rect)
 
     def update(self):
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.paddle_speed
-        elif self.moving_right:
+        elif self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.paddle_speed
         # update paddle rect
         self.rect.x = self.x
