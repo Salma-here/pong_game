@@ -7,13 +7,13 @@ class Settings:
         self.bg_color = (0, 0, 0)
 
         # paddle settings
-        self.paddle_width = 100
-        self.paddle_height = 15
-        self.paddle_margin = 15
+        self.paddle_width = 200
+        self.paddle_height = 20
+        self.paddle_margin = 20
         self.paddle_color = (255, 255, 255)
-        self.paddle_speed = 1.0
+        self.paddle_speed = 2.0
 
         # ball settings
         self.ball_color = (255, 255, 255)
-        self.ball_radius = 10
-        self.ball_speed = 1.0
+        self.ball_radius = 15
+        self.ball_speed = 0.5
