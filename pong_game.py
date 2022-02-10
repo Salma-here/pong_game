@@ -69,6 +69,7 @@ class Pong:
             self._update_screen()
             if self.ball.miss_ball():
                 print('you just lost my friend.')
+                self.history.log_data(self.timer.counter)
                 break
 
 
