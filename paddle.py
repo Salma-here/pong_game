@@ -15,5 +15,21 @@ class Paddle:
         self.rect.midbottom = \
             (self.screen_rect.midbottom[0], self.screen_rect.midbottom[1] - self.settings.paddle_margin)
 
+        # save paddle x position in float value
+        self.x = float(self.rect.x)
+
+        # attributes to help with movement status
+        self.moving_right = False
+        self.moving_left = False
+
     def draw_paddle(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
+
+    def update(self):
+        if self.moving_left:
+            self.x -= self.settings.paddle_speed
+        elif self.moving_right:
+            self.x += self.settings.paddle_speed
+        # update paddle rect
+        self.rect.x = self.x
+

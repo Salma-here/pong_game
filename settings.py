@@ -11,3 +11,4 @@ class Settings:
         self.paddle_height = 15
         self.paddle_margin = 15
         self.paddle_color = (255, 255, 255)
+        self.paddle_speed = 1.0
