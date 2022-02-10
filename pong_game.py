@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from history import History
 from paddle import Paddle
 from ball import Ball
 from settings import Settings
@@ -22,12 +23,14 @@ class Pong:
         self.paddle = Paddle(self)
         self.ball = Ball(self)
         self.timer = Timer(self)
+        self.history = History(self)
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.paddle.draw_paddle()
         self.ball.draw_ball()
         self.timer.draw_timer()
+        self.history.display_highest_record()
         self.paddle.update()
         self.ball.update()
         pygame.display.flip()

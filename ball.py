@@ -53,7 +53,7 @@ class Ball:
 
     def _update_position(self):
         # giving speed in y-axis a random value
-        rand = random() * 2
+        rand = random() * 3
         if self.y_speed < 0:
             self.y_speed = -rand
         else:
