@@ -11,7 +11,9 @@ class Pong:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_width()
+        self.settings.screen_height = self.screen.get_height()
         pygame.display.set_caption('a game of Pong')
         self.paddle = Paddle(self)
 
@@ -27,16 +29,25 @@ class Pong:
                 sys.exit()
             # handling key pressed events
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    self.paddle.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    self.paddle.moving_left = True
+                self.check_keydown_events()
             # handling key released events
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    self.paddle.moving_right = False
-                elif event.key == pygame.K_LEFT:
-                    self.paddle.moving_left = False
+                self.check_keyup_events()
+
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.paddle.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.paddle.moving_left = True
+        # press ESC to exit
+        elif event.key == pygame.K_ESCAPE:
+            sys.exit()
+
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.paddle.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.paddle.moving_left = False
 
     def run_game(self):
         while True:
