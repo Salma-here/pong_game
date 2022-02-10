@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from paddle import Paddle
 
 class Pong:
 
@@ -9,12 +10,14 @@ class Pong:
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption('a game of Pong')
+        self.paddle = Paddle(self)
 
     def run_game(self):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+            self.paddle.draw_paddle()
             pygame.display.flip()
 
 
