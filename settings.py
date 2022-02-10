@@ -12,3 +12,8 @@ class Settings:
         self.paddle_margin = 15
         self.paddle_color = (255, 255, 255)
         self.paddle_speed = 1.0
+
+        # ball settings
+        self.ball_color = (255, 255, 255)
+        self.ball_radius = 10
+        self.ball_speed = 1.0

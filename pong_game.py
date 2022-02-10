@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from paddle import Paddle
+from ball import Ball
 from settings import Settings
 
 
@@ -15,11 +16,14 @@ class Pong:
         self.settings.screen_width = self.screen.get_width()
         self.settings.screen_height = self.screen.get_height()
         pygame.display.set_caption('a game of Pong')
+
         self.paddle = Paddle(self)
+        self.ball = Ball(self)
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.paddle.draw_paddle()
+        self.ball.draw_ball()
         self.paddle.update()
         pygame.display.flip()
 
