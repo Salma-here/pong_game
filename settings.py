@@ -17,3 +17,9 @@ class Settings:
         self.ball_color = (255, 255, 255)
         self.ball_radius = 15
         self.ball_speed = 0.5
+
+        # timer settings
+        self.timer_color = (247, 37, 167)  # bright pink
+        self.timer_font = 'Consolas'
+        self.timer_font_size = 30
+

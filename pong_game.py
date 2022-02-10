@@ -5,6 +5,7 @@ import pygame
 from paddle import Paddle
 from ball import Ball
 from settings import Settings
+from timer import Timer
 
 
 class Pong:
@@ -20,11 +21,13 @@ class Pong:
 
         self.paddle = Paddle(self)
         self.ball = Ball(self)
+        self.timer = Timer(self)
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.paddle.draw_paddle()
         self.ball.draw_ball()
+        self.timer.draw_timer()
         self.paddle.update()
         self.ball.update()
         pygame.display.flip()
@@ -33,6 +36,8 @@ class Pong:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.USEREVENT:
+                self.timer.update()
             # handling key pressed events
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
