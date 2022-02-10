@@ -29,10 +29,10 @@ class Pong:
                 sys.exit()
             # handling key pressed events
             elif event.type == pygame.KEYDOWN:
-                self.check_keydown_events()
+                self._check_keydown_events(event)
             # handling key released events
             elif event.type == pygame.KEYUP:
-                self.check_keyup_events()
+                self._check_keyup_events(event)
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
