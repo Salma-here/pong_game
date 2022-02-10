@@ -1,4 +1,4 @@
-from random import random
+from random import random, choice
 
 import pygame
 
@@ -27,7 +27,9 @@ class Ball:
 
     def update(self):
         self._bounce_walls()
-        self._bounce_paddle()
+        catch = self._bounce_paddle()
+        if catch:
+            self._change_color()
         self._update_position()
 
     def _bounce_walls(self):
@@ -47,6 +49,7 @@ class Ball:
         paddle_top = self.paddle_rect.top
         if paddle_start < self.x < paddle_end and self.y >= paddle_top:
             self.y_speed = -self.y_speed
+            return True
 
     def _update_position(self):
         # giving speed in y-axis a random value
@@ -59,6 +62,9 @@ class Ball:
         self.x += self.x_speed
         self.y += self.y_speed
         self.position = (self.x, self.y)
+
+    def _change_color(self):
+        self.color = choice(list(self.settings.color_dict.values()))
 
     def miss_ball(self):
         # check if game is over
