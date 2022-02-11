@@ -20,6 +20,10 @@ class Ball:
         self.x_speed = self.settings.ball_speed
         self.y_speed = self.settings.ball_speed
 
+        self.catch_number = 0  # number of times ball was caught with paddle
+        # set to True when ball bounces off a wall
+        # only bounces off paddle when this value is true (only after a wall-bounce)
+        self.just_bounced = True
         self.game_running = pong_game.running
 
     def draw_ball(self):
@@ -30,25 +34,31 @@ class Ball:
         catch = self._bounce_paddle()
         if catch:
             self._change_color()
+            self.catch_number += 1
         self._update_position()
 
     def _bounce_walls(self):
         right = float(self.position[0] + self.radius)
         if right >= self.screen_rect.right:
             self.x_speed = -self.x_speed
+            self.just_bounced = True
         left = float(self.position[0] - self.radius)
         if left <= 0:
             self.x_speed = -self.x_speed
+            self.just_bounced = True
         top = float(self.position[1] - self.radius)
         if top <= 0:
             self.y_speed = -self.y_speed
+            self.just_bounced = True
 
     def _bounce_paddle(self):
         paddle_start = self.paddle_rect.left  # x attribute of right side
         paddle_end = self.paddle_rect.right  # x attribute of left side
         paddle_top = self.paddle_rect.top
-        if paddle_start < self.x < paddle_end and self.y >= paddle_top:
+        bottom = float(self.position[1] + self.radius)
+        if paddle_start < self.x < paddle_end and paddle_top <= bottom and self.just_bounced:
             self.y_speed = -self.y_speed
+            self.just_bounced = False
             return True
 
     def _update_position(self):
